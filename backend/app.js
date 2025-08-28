@@ -6,6 +6,9 @@ import registerRouter from './controllers/register.js';
 import config from './utils/config.js';
 import middleware from './utils/middleware.js';
 import mongoose from 'mongoose';
+import quizRouter from './controllers/quiz.js';
+import attemptRouter from './controllers/attempt.js';
+import leaderBoardRouter from './controllers/leaderboard.js';
 
 
 (async () => {
@@ -25,6 +28,9 @@ app.use(cors());
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
 app.use(middleware.tokenExtractor);
+app.use("/api/quizzes", quizRouter);
+app.use("/api/attempts", attemptRouter);
+app.use("/api/leaderboard", leaderBoardRouter);
 app.use("/api/users", userRouter);
 
 app.use(middleware.unknownEndpoint);

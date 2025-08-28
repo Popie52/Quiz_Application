@@ -53,15 +53,11 @@ attemptRouter.get(
       const attempt = await Attempt.findById(attemptId).populate("quiz");
 
       if (!attempt) {
-        const error = new Error("Attempt not found");
-        error.status = 404;
-        return next(error);
+        return res.status(404).json({ error: "Attempt not found"});
       }
 
       if (attempt.user.toString() !== req.user.id) {
-        const error = new Error("Unauthorized");
-        error.status = 403;
-        return next(error);
+        return res.status(403).json({error: "Unauthorized"});
       }
 
       const review = attempt.quiz.questions.map((question, index) => ({

@@ -7,7 +7,7 @@ A full-stack quiz application built with the MERN stack (MongoDB, Express.js, Re
 ## 🚀 Live Demo
 
 Try the app live here:  
-[https://quiz-application-frontend-1.onrender.com/login](https://quiz-application-frontend-1.onrender.com/login)
+[https://quiz-application-frontend-1.onrender.com/login](https://quiz-application-frontend-1.onrender.com)
 
 ---
 
@@ -29,29 +29,6 @@ Try the app live here:
 | Backend   | Node.js, Express.js         |
 | Database  | MongoDB (via Mongoose ODM)  |
 | Authentication | JWT (JSON Web Tokens)   |
-
----
-
-## 📂 Project Structure
-
-Quiz\_Application/
-├── backend/                # Backend API server
-│   ├── controllers/        # Route handlers/controllers
-│   ├── models/             # Mongoose models
-│   ├── routes/             # API routes
-│   ├── utils/              # Auth and other middleware
-│   ├── server.js           # Express server entry point
-│   └── .env                # Environment variables (not committed)
-│
-└── frontend/               # React frontend app
-├── public/             # Static assets
-├── src/
-│   ├── components/     # Reusable React components
-│   ├── pages/          # React page components (Login, Dashboard, etc.)
-│   ├── App.js          # Root React component
-│   ├── index.js        # React DOM render
-│   
-└── package.json
 
 ---
 

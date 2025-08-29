@@ -104,8 +104,8 @@ The frontend runs by default on [http://localhost:3000](http://localhost:3000) a
 
 | Method | Endpoint             | Description                    |
 | ------ | -------------------- | ------------------------------ |
-| POST   | `/api/auth/register` | Register a new user            |
-| POST   | `/api/auth/login`    | User login                     |
+| POST   | `/api/register` | Register a new user            |
+| POST   | `/api/login`    | User login                     |
 | GET    | `/api/quizzes`       | Get list of quizzes            |
 | POST   | `/api/quizzes`       | Create a new quiz (admin only) |
 | PUT    | `/api/quizzes/:id`   | Update a quiz (admin only)     |

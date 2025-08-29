@@ -79,4 +79,57 @@ attemptRouter.get(
   }
 );
 
+
+attemptRouter.get('/mine', middleware.userExtractor, async (req, res) => {
+  try {
+    const attempts = await Attempt.find({ user: req.user.id }) 
+      .populate('quiz', 'title') 
+      .sort({ createdAt: -1 });
+
+    const formatted = attempts.map((attempt) => ({
+      _id: attempt._id,
+      quiz: {
+        _id: attempt.quiz._id,
+        title: attempt.quiz.title,
+      },
+      score: attempt.score,
+      total: attempt.answers.length,
+    }));
+
+    res.json(formatted);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+attemptRouter.get('/:attemptId', middleware.userExtractor, async (req, res, next) => {
+  try {
+    const { attemptId } = req.params;
+    const attempt = await Attempt.findById(attemptId).populate('quiz', 'title');
+
+    if (!attempt) {
+      return res.status(404).json({ error: 'Attempt not found' });
+    }
+
+    if (attempt.user.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+
+    res.json({
+      _id: attempt._id,
+      quiz: {
+        _id: attempt.quiz._id,
+        title: attempt.quiz.title,
+      },
+      score: attempt.score,
+      total: attempt.totalQuestions,
+      answers: attempt.answers,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 export default attemptRouter;

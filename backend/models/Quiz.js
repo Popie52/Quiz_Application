@@ -12,7 +12,8 @@ const quizSchema = new mongoose.Schema({
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   questions: [questionSchema],
   createdAt: { type: Date, default: Date.now },
-});
+  isPublic: { type: Boolean, default: true },
+}, {timestamps: true});
 
 quizSchema.set("toJSON", {
   transform: (document, returnedObject) => {
